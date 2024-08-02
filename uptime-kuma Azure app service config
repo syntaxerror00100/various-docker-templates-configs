@@ -1,0 +1,25 @@
+
+Create app service
+Publish: container
+OS: Linux
+
+Docker -> Leave it as is and create
+
+After creation of app service
+- Open environment variables set the config WEBSITE_ENABLE_APP_SERVICE_STORAGE = true
+- Open Deployment center
+Registry settings
+Container type: Docker Compose
+Registry source: Docker hub
+Repo access: public
+Config: 
+
+
+services:
+   uptime-kuma:
+     image: louislam/uptime-kuma:1
+     volumes:
+      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/app/data
+     ports:
+       - "80:3001"
+     restart: always
